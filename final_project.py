@@ -16,7 +16,7 @@ while True:
     print(color.BOLD + "------------------------------------------------------" + color.END)
     print(color.BOLD + "---MENU---\n" + color.END)
     print("1. Recipient email list\n2. Add recipient email\n3. Send email\n4. Exit\n")
-    menu = input("Pilih menu: \n")
+    menu = input("Select menu: \n")
 
 # Pilihan menu program
     if menu == '1':
