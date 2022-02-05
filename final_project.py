@@ -12,44 +12,44 @@ while True:
         BOLD = '\033[1m'
         END = '\033[0m'
 
-    print(color.BOLD + "Selamat datang dalam program pengirim e-mail otomatis" + color.END)
+    print(color.BOLD + "Welcome to the automatic e-mail sender program!" + color.END)
     print(color.BOLD + "------------------------------------------------------" + color.END)
     print(color.BOLD + "---MENU---\n" + color.END)
-    print("1. Daftar email Penerima\n2. Tambah email Penerima\n3. Kirim email\n4. Keluar\n")
+    print("1. Recipient email list\n2. Add recipient email\n3. Send email\n4. Exit\n")
     menu = input("Pilih menu: \n")
 
 # Pilihan menu program
     if menu == '1':
-        print("Daftar email penerima")
+        print("Recipient email list: ")
         print("----------------------\n")
         with open ('receiverlist.txt', 'r') as filex: 
             daftar_penerima = filex.read()
             print(daftar_penerima)
 
     elif menu == '2':
-        email = input(str("Tambah email penerima: "))
+        email = input(str("Add recipient email: "))
         with open ('receiverlist.txt', 'a') as filex: 
             filex.write(email)
             filex.write('\n')
         print()        
-        print('Email berhasil ditambahkan')
+        print('Email added succesfully!')
     
     elif menu == '3':
-        print("Silahkan login terlebih dahulu")
-        gmail_user = input(str("Masukkan akun email: "))
+        print("Please login first")
+        gmail_user = input(str("Insert your email address: "))
         gmail_app_password = getpass.getpass()
 
         msg = MIMEMultipart()
         msg['From'] = gmail_user
-        msg['Subject'] = input(str("Subject email : "))
-        body = input(str("Isi email: "))
+        msg['Subject'] = input(str("Email subject : "))
+        body = input(str("Email content: "))
 
 # Menyertakan attachment dalam email
         while True: 
-            lampiran = input("Apakah anda ingin menyertakan lampiran? (yes/no) ")
+            lampiran = input("Do you want to include some attachments? (yes/no) ")
             if lampiran == 'yes':
 
-                filename = input("Masukkan nama file dan formatnya: ")
+                filename = input("Enter the file name and the format: ")
                 path = "paimon.gif"
                 attachment = open(path, "rb") 
                 
@@ -74,7 +74,7 @@ while True:
                         text = msg.as_string()
                         server.sendmail(gmail_user, receiver, text)
                         server.quit()
-                        print("e-mail terkirim!")
+                        print("Email sent!")
                     except Exception as exception:
                         print("Error: %s!\n\n" % exception)
     
@@ -96,21 +96,21 @@ while True:
                         text = msg.as_string()
                         server.sendmail(gmail_user, receiver, text)
                         server.quit()
-                        print("e-mail terkirim!")
+                        print("Email sent!")
                     except Exception as exception:
                         print("Error: %s!\n\n" % exception)
 
                 break
 
             else :
-                print("Pilihan tidak tersedia")
+                print("The option is not available")
             
 
     elif menu == '4': 
         print("---------------------------------")
-        print("Terima kasih!")
+        print("Thank you and have a nice day!")
         print("---------------------------------")
         break
 
     else : 
-        print("Mohon maaf, menu yang dituju tidak tersedia")
+        print("The option is not available")
